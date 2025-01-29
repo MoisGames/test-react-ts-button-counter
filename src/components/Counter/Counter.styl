@@ -1,19 +1,75 @@
+
 @import '../../styles/variables'
 
 counterMixin(valueColor, backgroundColor)
   display flex
   justify-content center
   align-items center
-  width 100px
-  height 100px
-  background-color backgroundColor
   border-radius 50%
   color valueColor
-  font-size 24px
   font-weight bold
+  background-color backgroundColor
 
 .counter--primary
   counterMixin(var(--primary-white), var(--primary-green))
 
 .counter--secondary
   counterMixin(var(--secondary-black), var(--secondary-grey))
+
+.counter--size-8
+  width 8px
+  height 8px
+  .counter__value
+    display none
+
+.counter--size-12
+  width 12px
+  height 12px
+  padding 4px 
+  .counter__value
+    display none
+
+.counter--size-16
+  min-width 16px
+  min-height 16px
+  padding 4px
+  .counter__value
+    font-size 10px
+
+.counter--size-20
+  min-width 20px
+  min-height 20px
+  padding 4px
+  .counter__value
+    font-size 12px
+
+.counter--size-24
+  min-width 24px
+  min-height 24px
+  padding 6px
+  .counter__value
+    font-size 14px
+
+.counter
+  position relative
+  display inline-flex
+  justify-content center
+  align-items center
+  border-radius 50%
+
+.counter__value
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+
+  &.one-char
+    min-width 1em
+    max-width 1em
+
+  &.two-chars
+    min-width 2em
+    max-width 2em
+
+  &.three-chars
+    min-width 3em
+    max-width 3em

@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, isLoading = false }) => {
           'Click me'
         )}
       </button>
-      <Counter value={count} theme='primary' />
+      <Counter value={10} theme='primary' size={16}/>
     </div>
   );
 };
