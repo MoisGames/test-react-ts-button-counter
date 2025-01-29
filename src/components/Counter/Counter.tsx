@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Counter.styl';
 
 interface CounterProps {
-  initialValue?: number;
+  value: number;
+  theme?: 'primary' | 'secondary';
 }
 
-const Counter: React.FC<CounterProps> = ({ initialValue = 0 }) => {
-  const [count, setCount] = useState(initialValue);
-
-  const increment = () => setCount(count + 1);
-  const decrement = () => setCount(count - 1);
-
+const Counter: React.FC<CounterProps> = ({ value, theme = 'primary' }) => {
   return (
-    <div className="counter">
-      <button onClick={decrement}>-</button>
-      <span>{count}</span>
-      <button onClick={increment}>+</button>
+    <div className={`counter counter--${theme}`}>
+      <span className="counter__value">{value}</span>
     </div>
   );
 };
