@@ -6,20 +6,20 @@ export default {
   component: Counter,
 } as Meta;
 
-const Template: StoryFn<{ value: number }> = (args) => <Counter {...args} />;
+const Template: StoryFn<{ quantity: number | string }> = (args) => <Counter {...args} />;
 
 
 export const Default = Template.bind({});
 Default.args = {
-  value: 0,
+  quantity: 0,
 };
 
 export const WithValue = Template.bind({});
 WithValue.args = {
-  value: 5,
+  quantity: 50,
 };
 
 export const LargeValue = Template.bind({});
 LargeValue.args = {
-  value: 100,
+  quantity: 100,
 };

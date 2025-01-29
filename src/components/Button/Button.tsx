@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, isLoading = false }) => {
           'Click me'
         )}
       </button>
-      <Counter value={100} theme='primary' size={16} stroke={true}/>
+      <Counter quantity={100} theme='primary' size={24} stroke={true}/>
     </div>
   );
 };
