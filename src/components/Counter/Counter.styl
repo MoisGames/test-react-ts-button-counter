@@ -1,4 +1,3 @@
-
 @import '../../styles/variables'
 
 counterMixin(valueColor, backgroundColor)
@@ -9,6 +8,13 @@ counterMixin(valueColor, backgroundColor)
   color valueColor
   font-weight bold
   background-color backgroundColor
+
+sizeMixin(size, padding, fontSize)
+  min-width size
+  min-height size
+  padding padding
+  .counter__value
+    font-size fontSize
 
 .counter--primary
   counterMixin(var(--primary-white), var(--primary-green))
@@ -25,30 +31,18 @@ counterMixin(valueColor, backgroundColor)
 .counter--size-12
   width 12px
   height 12px
-  padding 4px 
+  padding 4px
   .counter__value
     display none
 
 .counter--size-16
-  min-width 16px
-  min-height 16px
-  padding 4px
-  .counter__value
-    font-size 10px
+  sizeMixin(16px, 4px, 10px)
 
 .counter--size-20
-  min-width 20px
-  min-height 20px
-  padding 4px
-  .counter__value
-    font-size 12px
+  sizeMixin(20px, 4px, 12px)
 
 .counter--size-24
-  min-width 24px
-  min-height 24px
-  padding 6px
-  .counter__value
-    font-size 14px
+  sizeMixin(24px, 6px, 14px)
 
 .counter
   position relative
@@ -73,3 +67,15 @@ counterMixin(valueColor, backgroundColor)
   &.three-chars
     min-width 3em
     max-width 3em
+
+.counter--stroke
+  &.counter--size-8
+    border 1px solid var(--dynamic-surface-base-secondary)
+  &.counter--size-12
+    border 2px solid var(--dynamic-surface-base-secondary)
+  &.counter--size-16
+    border 2px solid var(--dynamic-surface-base-secondary)
+  &.counter--size-20
+    border 2px solid var(--dynamic-surface-base-secondary)
+  &.counter--size-24
+    border 3px solid var(--dynamic-surface-base-secondary)
