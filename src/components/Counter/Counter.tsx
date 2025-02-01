@@ -2,40 +2,32 @@ import React from 'react';
 import './Counter.styl';
 
 interface CounterProps {
-  quantity: number | string;
+  quantity: number;
   theme?: 'primary' | 'secondary';
-  size?: 8 | 12 | 16 | 20 | 24;
+  size?: number;
   stroke?: boolean;
+  pulse?: boolean;
 }
 
-const Counter: React.FC<CounterProps> = ({ quantity, theme = 'primary', size = 16, stroke = false }) => {
-  let displayValue: string;
-
-  if (typeof quantity === 'number') {
-    if (quantity > 99) {
-      displayValue = '99+';
-    } else {
-      displayValue = quantity.toString();
-    }
-  } else if (typeof quantity === 'string') {
-    displayValue = quantity.length > 3 ? quantity.substring(0, 3) : quantity;
-  } else {
-    displayValue = '';
-  }
-
-  const charCount = displayValue.length;
-
-  let valueClassName = '';
-  if (charCount === 1) {
-    valueClassName = 'one-char';
-  } else if (charCount === 2) {
-    valueClassName = 'two-chars';
-  } else if (charCount >= 3) {
-    valueClassName = 'three-chars';
-  }
+const Counter: React.FC<CounterProps> = ({
+  quantity,
+  theme = 'primary',
+  size = 16,
+  stroke = false,
+  pulse = false,
+}) => {
+  const displayValue = quantity > 99 ? '99+' : quantity.toString();
+  const valueClassName = `counter__value ${displayValue.length > 1 ? 'two-chars' : 'one-char'}`;
 
   return (
     <div className={`counter counter--${theme} counter--size-${size} ${stroke ? 'counter--stroke' : ''}`}>
+      {pulse && (size === 8 || size === 12) && (
+        <div className={`live-indicator counter--${theme} counter--size-${size}`}>
+          <div className={`dot counter--${theme}`}></div>
+          <div className={`pulse one counter--${theme}`}></div>
+          <div className={`pulse two counter--${theme}`}></div>
+        </div>
+      )}
       <span className={`counter__value ${valueClassName}`}>{displayValue}</span>
     </div>
   );

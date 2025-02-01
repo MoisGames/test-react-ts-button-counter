@@ -1,5 +1,16 @@
 @import '../../styles/variables'
 
+@keyframes dot-scale-fade
+  0%
+    opacity 0.5
+    transform scale(1)
+  50%
+    opacity 0
+    transform scale(3)
+  100%
+    opacity 0
+    transform scale(3)
+
 counterMixin(valueColor, backgroundColor)
   display flex
   justify-content center
@@ -9,12 +20,12 @@ counterMixin(valueColor, backgroundColor)
   font-weight bold
   background-color backgroundColor
 
-sizeMixin(size, padding, fontSize)
+sizeMixin(size, fontSize, backgroundColor)
   min-width size
   min-height size
-  padding padding
   .counter__value
     font-size fontSize
+    background-color backgroundColor
 
 .counter--primary
   counterMixin(var(--primary-white), var(--primary-green))
@@ -31,18 +42,17 @@ sizeMixin(size, padding, fontSize)
 .counter--size-12
   width 12px
   height 12px
-  padding 4px
   .counter__value
     display none
 
 .counter--size-16
-  sizeMixin(16px, 4px, 10px)
+  sizeMixin(16px, 4px, 10px, var(--primary-green))
 
 .counter--size-20
-  sizeMixin(20px, 4px, 12px)
+  sizeMixin(20px, 4px, 12px, var(--primary-green))
 
 .counter--size-24
-  sizeMixin(24px, 6px, 14px)
+  sizeMixin(24px, 6px, 14px, var(--primary-green))
 
 .counter
   position relative
@@ -64,10 +74,6 @@ sizeMixin(size, padding, fontSize)
     min-width 2em
     max-width 2em
 
-  &.three-chars
-    min-width 3em
-    max-width 3em
-
 .counter--stroke
   &.counter--size-8
     border 1px solid var(--dynamic-surface-base-secondary)
@@ -79,3 +85,56 @@ sizeMixin(size, padding, fontSize)
     border 2px solid var(--dynamic-surface-base-secondary)
   &.counter--size-24
     border 3px solid var(--dynamic-surface-base-secondary)
+
+.live-indicator
+  position relative
+  display flex
+  align-items center
+  justify-content center
+
+  &.counter--size-8
+    width 8px
+    height 8px
+
+  &.counter--size-12
+    width 12px
+    height 12px
+
+.live-indicator .dot, .live-indicator .pulse
+  position absolute
+  border-radius 50%
+
+  &.counter--size-8
+    height 8px
+    width 8px
+
+  &.counter--size-12
+    height 12px
+    width 12px
+
+  &.counter--primary
+    background-color var(--primary-green)
+    opacity 0.2
+
+  &.counter--secondary
+    background-color var(--secondary-grey)
+    opacity 0.2
+
+ .live-indicator .pulse
+  animation dot-scale-fade 2s infinite
+  width 12px
+  height 12px
+  
+  &.counter--size-8
+    width 8px
+    height 8px
+
+  &.counter--size-12
+    width 12px
+    height 12px
+
+.live-indicator .pulse.one
+  animation-delay 0s
+
+.live-indicator .pulse.two
+  animation-delay 0.25s
