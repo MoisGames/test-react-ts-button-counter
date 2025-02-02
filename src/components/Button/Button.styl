@@ -1,25 +1,45 @@
+@import '../../styles/variables'
+
 .button
+  width 200px
+  height 50px
+  border none
+  background-color var(--button-primary-background)
   display flex
+  flex-direction row
   align-items center
-  gap 10px
+  justify-content center
+  font-size 12px
+  position relative
 
-  &__element
-    padding 10px 20px
-    font-size 16px
-    color white
-    background-color orange
-    border none
-    border-radius 8px
-    cursor pointer
-    transition background-color 0.3s ease
+  &--primary
+    background-color var(--button-primary-background)
+  
+  &--secondary
+    background-color var(--button-secondary-background)
 
-    &:hover
-      background-color darkorange
+.button__loader
+  width 16px
+  height 16px
+  border-radius 100%
+  position relative
+  overflow hidden
+  border 3px solid transparent
+  border-top-color transparent
+  animation spin 3s linear infinite
 
-    &:disabled
-      background-color #ccc
-      cursor not-allowed
+.button__loader--primary
+  border-left: 3px solid var(--background-loader-primary)
+  border-right: 3px solid var(--background-loader-primary)
+  border-bottom: 3px solid var(--background-loader-primary)
 
-  img
-    width 20px
-    height 20px
+.button__loader--secondary
+  border-left: 3px solid var(--background-loader-secondary)
+  border-right: 3px solid var(--background-loader-secondary)
+  border-bottom: 3px solid var(--background-loader-secondary)
+
+@keyframes spin
+  0%
+    transform rotate(0deg)
+  100%
+    transform rotate(360deg)

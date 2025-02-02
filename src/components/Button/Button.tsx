@@ -3,30 +3,27 @@ import Counter from '../Counter/Counter';
 import './Button.styl';
 
 interface ButtonProps {
-  onClick?: () => void;
-  isLoading?: boolean;
+    type: 'primary' | 'secondary';
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, isLoading = false }) => {
-  const [count, setCount] = useState(0);
+const Button: React.FC<ButtonProps> = ({ type = 'primary' }) => {
+    const [count, setCount] = useState(0);
+    const [loading, setLoading] = useState(false);
 
-  const handleButtonClick = () => {
-    setCount(count + 1); 
-    if (onClick) onClick();
-  };
+    const handleButtonClick = () => {
+        setLoading(true);
+        setCount(count + 1);
+    };
 
-  return (
-    <div className="button">
-      <button className="button__element" onClick={handleButtonClick} disabled={isLoading}>
-        {isLoading ? (
-          <img src="/path/to/loader.svg" alt="Loading..." />
-        ) : (
-          'Click me'
-        )}
-      </button>
-      <Counter quantity={560} theme='secondary' size={12} stroke={false} pulse={true}/>
-    </div>
-  );
-};
+    return (
+        <button className={`button button--${type}`} onClick={handleButtonClick}>
+            <div className={`button__content-group`} style={{ display: loading ? 'none' : 'flex' }}>
+                <label className="button__label">Click me</label>
+                <div className={`button__loader button__loader--${type} ${loading ? 'visible' : 'hidden'}`} />
+                <Counter quantity={560} theme='primary' size={24} stroke={false} pulse={true} />
+            </div>
+        </button>
+    );
+}
 
 export default Button;
