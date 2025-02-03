@@ -5,22 +5,37 @@ import './Button.styl';
 interface ButtonProps {
   type: 'primary' | 'secondary';
   size?: '56' | '36' | '28';
-  counter: boolean;
-  disabled: boolean;
+  counter?: boolean;
+  disabled?: boolean;
   text: string;
+  onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ type = 'primary', size, counter = true, disabled = false, text }) => {
+const Button: React.FC<ButtonProps> = ({ 
+  type = 'primary', 
+  size, 
+  counter = true, 
+  disabled = false, 
+  text, 
+  onClick 
+}) => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const handleButtonClick = () => {
     if (disabled) return;
-    setLoading(true);
-    setTimeout(() => {
-      setCount(count + 1);
-      setLoading(false);
-    }, 50000);
+
+    if (onClick) {
+
+      onClick();
+    } else {
+
+      setLoading(true);
+      setTimeout(() => {
+        setCount(count + 1);
+        setLoading(false);
+      }, 50000);
+    }
   };
 
   return (
@@ -40,7 +55,13 @@ const Button: React.FC<ButtonProps> = ({ type = 'primary', size, counter = true,
           <label className="button__label">{text}</label>
           {counter && (
             <div className="button__counter-block">
-              <Counter quantity={count} theme={type} size={24} stroke={false} pulse={true} />
+              <Counter
+                quantity={count}
+                theme={type}
+                size={24}
+                stroke={false}
+                pulse={true}
+              />
             </div>
           )}
         </div>
