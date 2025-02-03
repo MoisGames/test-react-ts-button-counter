@@ -7,9 +7,10 @@ interface ButtonProps {
   size?: '56' | '36' | '28';
   counter: boolean;
   disabled: boolean;
+  text: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ type = 'primary', size, counter = true, disabled = false }) => {
+const Button: React.FC<ButtonProps> = ({ type = 'primary', size, counter = true, disabled = false, text }) => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -36,16 +37,10 @@ const Button: React.FC<ButtonProps> = ({ type = 'primary', size, counter = true,
         </div>
       ) : (
         <div className="button__content-group">
-          <label className="button__label">Click me</label>
+          <label className="button__label">{text}</label>
           {counter && (
             <div className="button__counter-block">
-              <Counter
-                quantity={count}
-                theme={type}
-                size={24}
-                stroke={false}
-                pulse={true}
-              />
+              <Counter quantity={count} theme={type} size={24} stroke={false} pulse={true} />
             </div>
           )}
         </div>

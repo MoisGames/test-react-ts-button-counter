@@ -22,6 +22,10 @@
     opacity 0.36
     pointer-events none
 
+  &:focus
+    outline 4px solid var(--focus-border-color)
+    outline-offset 2px
+
   @media (min-width: 1200px)
     width 163px
     height 56px
@@ -79,6 +83,29 @@
 
   .button--size-28 &
     gap 4px
+
+.button__label
+  white-space nowrap
+  text-overflow ellipsis
+  overflow hidden
+
+  .button--size-56 &
+    max-width calc(163px / 2)
+
+  .button--size-36 &
+    max-width calc(112px / 2)
+
+  .button--size-28 &
+    max-width calc(96px / 2)
+
+  @media (min-width: 1200px)
+    max-width calc(163px / 2)
+
+  @media (min-width: 992px) and (max-width: 1199px)
+    max-width calc(112px / 2)
+
+  @media (max-width: 991px)
+    max-width calc(96px / 2)
 
 .button__shimmer
   display flex
@@ -156,7 +183,3 @@
     transform rotate(0deg)
   100%
     transform rotate(360deg)
-
-.button__label-counter.hidden
-  opacity 0
-  transition opacity 0.3s ease
