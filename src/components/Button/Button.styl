@@ -1,45 +1,158 @@
 @import '../../styles/variables'
 
 .button
-  width 200px
-  height 50px
   border none
-  background-color var(--button-primary-background)
   display flex
-  flex-direction row
   align-items center
   justify-content center
-  font-size 12px
   position relative
+  overflow hidden
+  box-sizing border-box
+  color var(--text-color-primary)
 
   &--primary
     background-color var(--button-primary-background)
-  
+    color var(--text-color-primary)
+
   &--secondary
     background-color var(--button-secondary-background)
+    color var(--text-color-secondary)
+
+  @media (min-width: 1200px)
+    width 163px
+    height 56px
+    font-size 17px
+    border-radius 16px
+    padding 16px 16px
+
+  @media (min-width: 992px) and (max-width: 1199px)
+    width 112px
+    height 36px
+    font-size 15px
+    border-radius 12px
+    padding 8px 12px
+
+  @media (max-width: 991px)
+    width 96px
+    height 28px
+    font-size 13px
+    border-radius 9.3px
+    padding 6px 10px
+
+  &--size-56
+    width 163px
+    height 56px
+    font-size 17px
+    border-radius 16px
+    padding 16px 16px
+
+  &--size-36
+    width 112px
+    height 36px
+    font-size 15px
+    border-radius 12px
+    padding 8px 12px
+
+  &--size-28
+    width 96px
+    height 28px
+    font-size 13px
+    border-radius 9.3px
+    padding 6px 10px
+
+.button__content-group
+  display flex
+  align-items center
+  justify-content space-between
+  gap 8px
+  box-sizing border-box
+
+  .button--size-56 &
+    gap 8px
+
+  .button--size-36 &
+    gap 6px
+
+  .button--size-28 &
+    gap 4px
+
+.button__shimmer
+  display flex
+  align-items center
+  justify-content center
+  width calc(100% / 3)
+  overflow hidden
+
+  &::before
+    content ''
+    position absolute
+    top 0
+    left -100%
+    width 100%
+    height 100%
+    background-color var(--shimmer-color-primary)
+    animation shimmer 1.5s infinite
+
+  .button--secondary &
+    &::before
+      background-color var(--shimmer-color-secondary)
 
 .button__loader
-  width 16px
-  height 16px
+  display flex
+  align-items center
+  justify-content center
   border-radius 100%
-  position relative
-  overflow hidden
   border 3px solid transparent
-  border-top-color transparent
-  animation spin 3s linear infinite
+  animation spin 1s linear infinite
+  box-sizing content-box 
 
-.button__loader--primary
-  border-left: 3px solid var(--background-loader-primary)
-  border-right: 3px solid var(--background-loader-primary)
-  border-bottom: 3px solid var(--background-loader-primary)
+  &.button__loader--size-56
+    width 24px
+    height 24px
 
-.button__loader--secondary
-  border-left: 3px solid var(--background-loader-secondary)
-  border-right: 3px solid var(--background-loader-secondary)
-  border-bottom: 3px solid var(--background-loader-secondary)
+  &.button__loader--size-36
+    width 20px
+    height 20px
+
+  &.button__loader--size-28
+    width 16px
+    height 16px
+
+  &.button__loader:not(.button__loader--size-56):not(.button__loader--size-36):not(.button__loader--size-28)
+    @media (min-width: 1200px)
+      width 24px
+      height 24px
+
+    @media (min-width: 992px) and (max-width: 1199px)
+      width 20px
+      height 20px
+
+    @media (max-width: 991px)
+      width 16px
+      height 16px
+
+  &--primary
+    border-left-color var(--background-loader-primary)
+    border-right-color var(--background-loader-primary)
+    border-bottom-color var(--background-loader-primary)
+
+  &--secondary
+    border-left-color var(--background-loader-secondary)
+    border-right-color var(--background-loader-secondary)
+    border-bottom-color var(--background-loader-secondary)
+
+@keyframes shimmer
+  0%
+    transform translateX(0%)
+  100%
+    transform translateX(300%)
 
 @keyframes spin
   0%
     transform rotate(0deg)
   100%
     transform rotate(360deg)
+
+.button__label-counter.hidden
+  opacity 0
+  transition opacity 0.3s ease

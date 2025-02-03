@@ -4,9 +4,9 @@ import Button from './components/Button/Button'
 function App() {
 
   return (
-    <>
-      <Button type='secondary'/>
-    </>
+    <main className='app-main__wrapper'>
+      <Button type='primary'/>
+    </main>
   )
 }
 

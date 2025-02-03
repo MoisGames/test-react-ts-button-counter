@@ -4,9 +4,18 @@
   --secondary-black: #000000
   --secondary-grey: rgba(131, 102, 86, 0.12)
   --dynamic-surface-base-secondary: #0000FF
-  --button-primary-background rgba(255, 119, 0, 1)
-  --button-secondary-background rgba(131, 102, 86, 0.12)
 
-  --background-loader-primary rgba(255, 255, 255, 1)
-  --background-loader-secondary rgba(46, 47, 51, 1)
-  
+  --button-primary-background: rgba(255, 119, 0, 1)
+  --button-secondary-background: rgba(131, 102, 86, 0.12)
+
+  // Цвет текста для каждой темы
+  --text-color-primary: var(--primary-white) // Белый для primary
+  --text-color-secondary: var(--secondary-black) // Чёрный для secondary
+
+  // Цвет лоадера для каждой темы (совпадает с цветом текста)
+  --background-loader-primary: var(--text-color-primary)
+  --background-loader-secondary: var(--text-color-secondary)
+
+  // Цвет shimmer для каждой темы (с opacity 0.12)
+  --shimmer-color-primary: rgba(255, 255, 255, 0.12) // Белый с opacity 0.12
+  --shimmer-color-secondary: rgba(0, 0, 0, 0.12) // Чёрный с opacity 0.12
