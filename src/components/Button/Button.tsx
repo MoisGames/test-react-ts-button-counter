@@ -5,13 +5,16 @@ import './Button.styl';
 interface ButtonProps {
   type: 'primary' | 'secondary';
   size?: '56' | '36' | '28';
+  counter: boolean;
+  disabled: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ type = 'primary', size }) => {
+const Button: React.FC<ButtonProps> = ({ type = 'primary', size, counter = true, disabled = false }) => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const handleButtonClick = () => {
+    if (disabled) return;
     setLoading(true);
     setTimeout(() => {
       setCount(count + 1);
@@ -21,8 +24,11 @@ const Button: React.FC<ButtonProps> = ({ type = 'primary', size }) => {
 
   return (
     <button
-      className={`button button--${type} ${size ? `button--size-${size}` : ''}`}
+      className={`button button--${type} ${size ? `button--size-${size}` : ''} ${
+        disabled ? 'button--disabled' : ''
+      }`}
       onClick={handleButtonClick}
+      disabled={disabled}
     >
       {loading ? (
         <div className="button__shimmer">
@@ -31,15 +37,17 @@ const Button: React.FC<ButtonProps> = ({ type = 'primary', size }) => {
       ) : (
         <div className="button__content-group">
           <label className="button__label">Click me</label>
-          <div className="button__counter-block">
-            <Counter
-              quantity={count}
-              theme={type}
-              size={24}
-              stroke={false}
-              pulse={true}
-            />
-          </div>
+          {counter && (
+            <div className="button__counter-block">
+              <Counter
+                quantity={count}
+                theme={type}
+                size={24}
+                stroke={false}
+                pulse={true}
+              />
+            </div>
+          )}
         </div>
       )}
     </button>

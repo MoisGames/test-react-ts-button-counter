@@ -5,7 +5,7 @@ function App() {
 
   return (
     <main className='app-main__wrapper'>
-      <Button type='primary'/>
+      <Button type='primary' disabled={false} counter={true}/>
     </main>
   )
 }
