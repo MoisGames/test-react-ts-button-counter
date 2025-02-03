@@ -9,6 +9,7 @@
   overflow hidden
   box-sizing border-box
   color var(--text-color-primary)
+  transition all 500ms cubic-bezier(0, -0.3, 0.5, 1.3)
 
   &--primary
     background-color var(--button-primary-background)
@@ -25,6 +26,22 @@
   &:focus
     outline 4px solid var(--focus-border-color)
     outline-offset 2px
+
+  &:hover
+    &::before
+      content ''
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 100%
+      background-color currentColor // Цвет текста
+      opacity 0.12 // Прозрачность 12%
+      z-index 1 // Наложение поверх кнопки
+
+    .button__content-group
+      transform scale(1.05) // Масштабирование до 105%
+      transition transform 500ms cubic-bezier(0, -0.3, 0.5, 1.3) // Анимация масштабирования
 
   @media (min-width: 1200px)
     width 163px
@@ -74,6 +91,9 @@
   justify-content space-between
   gap 8px
   box-sizing border-box
+  padding 2px
+  transition transform 500ms cubic-bezier(0, -0.3, 0.5, 1.3)
+  z-index 2
 
   .button--size-56 &
     gap 8px
